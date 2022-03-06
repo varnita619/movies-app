@@ -85,10 +85,11 @@ function App() {
 
             </div>
 
-          <h3>{data.title}</h3> 
-          <h4>{data.original_language}</h4> 
-          <h6>{data.vote_average}</h6>
-          <h6>{data.vote_count}</h6>
+
+          <h3>Title: {data.title}</h3> 
+          <h4>Language: {data.original_language}</h4> 
+          <h6>Ratings: {data.vote_average}</h6>
+
            </div>
            )
         })}</div>
