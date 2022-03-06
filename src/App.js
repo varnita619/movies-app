@@ -6,24 +6,24 @@ import './App.css';
 
 function App() {
   const api = 'https://api.themoviedb.org/4/discover/movie?api_key=c8112abd3848ec925ccbd87f87205c7a';
-  const searchApi = 'https://api.themoviedb.org/4/search/movie?api_key=c8112abd3848ec925ccbd87f87205c7a'
+  const searchApi = 'https://api.themoviedb.org/4/search/movie?api_key=c8112abd3848ec925ccbd87f87205c7a&query='
   const [database, setDatabase] = useState([]);
   const [search, setSearch] = useState("");
 
   async function getUser() {
     try {
       const response = await axios.get(api);
-      
       setDatabase(response.data.results)
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function searchDatabase(){
+  async function searchDatabaseFunc(){
     try {
-      const response = await axios.get(searchApi + '/' + search);
-      console.log(response);
+      const searchResponse = await axios.get(searchApi + search);
+      setDatabase(searchResponse.data.results)
+      setSearch('')
       
     } catch (error) {
       console.error(error);
@@ -32,12 +32,10 @@ function App() {
 
   const searchHandler = (e)=>{
     setSearch(e.target.value)
-    console.log(e.target.value)
   }
 
   useEffect(()=>{
     getUser();
-    searchDatabase();
   }, [])
 
   return (
@@ -45,8 +43,14 @@ function App() {
       <nav>
         
         <h1>Navigation</h1>
+
+ 
         
-        <input type='text' onChange={searchHandler} placeholder='enter movies name'></input>
+        <div>
+        <input type='text' onChange={searchHandler} value={search} placeholder='enter movies name'></input>
+        <button onClick={searchDatabaseFunc}>Search</button>
+        </div>
+
         
       </nav>
 
@@ -62,6 +66,7 @@ function App() {
             </div>
 
           <h3>{data.title}</h3> 
+          <h4>{data.original_language}</h4> 
 
            </div>
            )
