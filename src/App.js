@@ -14,6 +14,7 @@ function App() {
     try {
       const response = await axios.get(api);
       setDatabase(response.data.results)
+      console.log(database)
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +87,8 @@ function App() {
 
           <h3>{data.title}</h3> 
           <h4>{data.original_language}</h4> 
+          <h6>{data.vote_average}</h6>
+          <h6>{data.vote_count}</h6>
 
            </div>
            )
