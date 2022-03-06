@@ -92,6 +92,7 @@ function App() {
            </div>
            )
         })}</div>
+        <h1>Watchlist</h1>
       </main>
     </div>
   );

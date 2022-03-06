@@ -54,7 +54,7 @@
   overflow-y: scroll;
   border: 2px solid red;
   padding: 1rem;
-  
+  cursor: pointer;
 }
 
 .movie-card{
