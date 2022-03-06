@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
+      <nav className='navigation'>
         
         <h1>Navigation</h1>
 
