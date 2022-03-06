@@ -9,6 +9,7 @@ function App() {
   const searchApi = 'https://api.themoviedb.org/4/search/movie?api_key=c8112abd3848ec925ccbd87f87205c7a&query='
   const [database, setDatabase] = useState([]);
   const [search, setSearch] = useState("");
+  const [wishlist, setWishlist] = useState([]);
 
   async function getUser() {
     try {
@@ -41,6 +42,18 @@ function App() {
     setDatabase(newDatabase)
     // console.log(newDatabase)
   }
+
+  const addtoWatchlist = (data)=>{
+    // console.log(data)
+    setWishlist([...wishlist, data])
+  }
+
+  const removeWishlistItem = (el) =>{
+    const newList = wishlist.filter(eachmovie=> (eachmovie.id !== el.id) ? eachmovie:'' )
+    setWishlist(newList)
+  }
+
+
 
   useEffect(()=>{
     getUser();
@@ -78,13 +91,11 @@ function App() {
         <h1>Movies Card</h1>
         <div className='movie-card-container'>{database.map((data)=>{
          return (
-          <div key={data.id}  className='movie-card'>
+          <div key={data.id}  className='movie-card' onClick={()=>addtoWatchlist(data)}>
 
             <div className='movie-img-container'>
             <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} className='movie-img'></img>
-
             </div>
-
 
           <h3>Title: {data.title}</h3> 
           <h4>Language: {data.original_language}</h4> 
@@ -94,6 +105,16 @@ function App() {
            )
         })}</div>
         <h1>Watchlist</h1>
+        <div >
+          {wishlist.map(el=>{
+           return(
+             <div key={el.id} className='wishlistedItem'>
+               <h3>{el.title}</h3>
+               <button className='removeBTN' onClick={()=>removeWishlistItem(el) }>Remove</button>
+             </div>
+           )
+          })}
+        </div>
       </main>
     </div>
   );

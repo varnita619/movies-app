@@ -74,4 +74,17 @@
   height: 65%;
 }
 
+.wishlistedItem{
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+  background-color: yellowgreen;
+  border-radius: 5rem;
+  padding: 1.5rem;
+  margin: 1rem auto;
+}
 
+.removeBTN{
+  padding: 0.5rem
+
+}
