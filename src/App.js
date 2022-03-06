@@ -34,9 +34,18 @@ function App() {
     setSearch(e.target.value)
   }
 
+  const langHandler = (e) =>{
+    const selectedLang = e.target.value
+    const newDatabase = database.filter(el=>(el.original_language===selectedLang)? el:'')
+    setDatabase(newDatabase)
+    // console.log(newDatabase)
+  }
+
   useEffect(()=>{
     getUser();
   }, [])
+
+
 
   return (
     <div className="App">
@@ -44,6 +53,17 @@ function App() {
         
         <h1>Navigation</h1>
 
+        <div>
+          <h3>Language</h3>
+        <input type="radio" id="en" name="language" value="en" onChange={langHandler}/>
+        <label htmlFor="en">en</label>
+        <input type="radio" id="ja" name="language" value="ja" onChange={langHandler}/>
+        <label htmlFor="ja">ja</label>
+        <input type="radio" id="hi" name="language" value="hi" onChange={langHandler}/>
+        <label htmlFor="hi">hi</label>
+        </div>
+
+        <br />
  
         
         <div>
@@ -51,7 +71,6 @@ function App() {
         <button onClick={searchDatabaseFunc}>Search</button>
         </div>
 
-        
       </nav>
 
       <main>
