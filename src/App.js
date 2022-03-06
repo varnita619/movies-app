@@ -89,7 +89,6 @@ function App() {
           <h4>{data.original_language}</h4> 
           <h6>{data.vote_average}</h6>
           <h6>{data.vote_count}</h6>
-
            </div>
            )
         })}</div>
